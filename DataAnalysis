@@ -1,0 +1,62 @@
+import pandas as pd
+import numpy as np
+
+orders = pd.read_table("http://bit.ly/chiporders")
+orders.head()
+
+users = pd.read_table("http://bit.ly/movieusers", sep="|", header=None)
+users.columns = ["ID", "Yas", "Cinsiyet", "Meslek", "Zip"]
+users.head()
+
+users.dtypes
+
+users.shape
+
+users.describe()
+
+users.describe(include="object")
+
+movies = pd.read_csv("http://bit.ly/imdbratings")
+movies.head()
+
+movies.shape
+
+movies["duration"].sort_values(ascending=False)
+
+movies.sort_values("duration", ascending=False)
+
+movies.sort_values("duration", ascending=False)[:10]
+
+# uzunlugu 200 dakikadan fazla olan filmleri bulmak istiyorum
+long_movies = movies[movies["duration"] > 200]
+long_movies["star_rating"].mean()
+
+movies["star_rating"].mean()
+
+# uzunlugu 180 dakikadan fazla ve genre değeri Drama olan filmleri bulalım
+movies[(movies["duration"] > 180) & (movies["genre"] == "Drama")]
+
+orders.head()
+
+# tüm siparişler için ortalama fiyatı bulalım
+#orders["item_price"].str.replace("$", "")
+orders["item_price"].str.slice(1).astype(float).mean()
+
+# item_name içinde "Chicken" geçen  ürünlerin ortalama fiyatı nedir?
+chicken_data = orders[orders["item_name"].str.contains("Chicken")]
+chicken_data["item_price"].str.slice(1).astype(float).mean()
+
+drinks = pd.read_csv("http://bit.ly/drinksbycountry")
+drinks.head()
+
+drinks.sort_values("beer_servings", ascending=False)[:5]
+
+drinks.head()
+
+drinks.groupby("continent").mean()
+
+drinks.groupby("continent").mean()["beer_servings"]
+
+drinks.groupby("continent").mean()["beer_servings"].plot(kind="bar")
+
+drinks.groupby("continent").mean().plot(kind="bar")
