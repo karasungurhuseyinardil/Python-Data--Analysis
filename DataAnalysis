@@ -60,3 +60,37 @@ drinks.groupby("continent").mean()["beer_servings"]
 drinks.groupby("continent").mean()["beer_servings"].plot(kind="bar")
 
 drinks.groupby("continent").mean().plot(kind="bar")
+
+burak = pd.to_datetime("01/03/2001", dayfirst=True)
+burak
+
+burak.day
+
+burak.month
+
+burak.year
+
+burak.day_name()
+
+burak.month_name()
+
+ufos = pd.read_csv("http://bit.ly/uforeports")
+ufos.head()
+
+ufos.shape
+
+ufos.dtypes
+
+ufos["Time"] = pd.to_datetime(ufos["Time"])
+ufos.dtypes
+
+ufos["Time"].dt.year.value_counts().sort_index().plot()
+
+ufos["Time"].dt.month.value_counts().sort_index().plot(kind="bar")
+
+ufos["Time"].dt.day_name().value_counts().sort_index().plot(kind="bar")
+
+ufos["Time"].dt.day.value_counts().sort_index().plot(kind="bar")
+
+data = pd.read_csv("/content/BTC_INR_Historical Data.csv")
+data.head()
